@@ -18,6 +18,14 @@ class UserController extends Controller{
 
 
     } 
-   
+    public function getAllRestaurants(){
+        $restaurants=Restaurant::all();
+        return response()->json([
+            "status" => "success",
+            "restaurants" => $restaurants
+        ],200);
+
+
+    } 
 
 }
