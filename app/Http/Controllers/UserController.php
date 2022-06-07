@@ -28,4 +28,18 @@ class UserController extends Controller{
 
     } 
 
+    public function addRestaurant(Request $request){
+        $res_name = $request->rname;
+        $img = $request->photo;
+        $descript = $request->desc;
+        $res = new Restaurant;
+        $res->r_name=$res_name;
+        $res->photo=$img;
+        $res->description=$descript;
+        $res->save();
+        return response()->json([
+            "status" => "success"],200);
+
+
+}
 }

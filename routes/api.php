@@ -16,3 +16,4 @@ use App\Http\Controllers\UserController;
 */
 Route::get('/get_users', [UserController::class, 'getAllUsers']);
 Route::get('/get_restaurants', [UserController::class, 'getAllRestaurants']);
+Route::post('/add_restaurant', [UserController::class, 'addRestaurant']);
