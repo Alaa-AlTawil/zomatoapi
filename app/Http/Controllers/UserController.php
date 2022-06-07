@@ -8,7 +8,7 @@ use App\Models\Restaurant;
 
 
 class UserController extends Controller{
-
+// get all users
     public function getAllUsers(){
         $users=User::all();
         return response()->json([
@@ -18,6 +18,7 @@ class UserController extends Controller{
 
 
     } 
+//get the restaurants
     public function getAllRestaurants(){
         $restaurants=Restaurant::all();
         return response()->json([
@@ -27,7 +28,7 @@ class UserController extends Controller{
 
 
     } 
-
+//add restaurant
     public function addRestaurant(Request $request){
         $res_name = $request->rname;
         $img = $request->photo;
@@ -40,20 +41,29 @@ class UserController extends Controller{
         return response()->json([
             "status" => "success"],200);
 }
+//sign up
     public function addUser(Request $request){
-        $first_name = $request->fname;
-        $last_name = $request->lname;
-        $type = $request->type;
-        $email = $request->email;
-        $password = $request->pass;
-        $res = new User;
-        $res->F_name=$first_name;
-        $res->L_name=$last_name;
-        $res->Type=$type;
-        $res->Email=$email;
-        $res->Password=$password;
-        $res->save();
+        $user = new User;
+        $user->F_name=$request->fname;
+        $user->L_name=$request->lname;
+        $user->Type=$request->type;
+        $user->Email=$request->email;
+        $user->Password=hash('sha256', $request->pass);
+        $user->save();
         return response()->json([
             "status" => "success"],200);
     }
+    //edit profile
+     public function editProfile(Request $request){
+         $users=User::where($res->id=$request->id);
+         $res->F_name=$request->fname;
+         $res->L_name=$request->lname;
+         $res->Password=hash('sha256', $request->pass);
+         
+         $res->save();
+         return response()->json([
+             "status" => "success"],200);
+     }
+     
+
 }
