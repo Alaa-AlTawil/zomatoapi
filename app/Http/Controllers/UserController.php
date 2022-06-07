@@ -39,7 +39,21 @@ class UserController extends Controller{
         $res->save();
         return response()->json([
             "status" => "success"],200);
-
-
 }
+    public function addUser(Request $request){
+        $first_name = $request->fname;
+        $last_name = $request->lname;
+        $type = $request->type;
+        $email = $request->email;
+        $password = $request->pass;
+        $res = new User;
+        $res->F_name=$first_name;
+        $res->L_name=$last_name;
+        $res->Type=$type;
+        $res->Email=$email;
+        $res->Password=$password;
+        $res->save();
+        return response()->json([
+            "status" => "success"],200);
+    }
 }
