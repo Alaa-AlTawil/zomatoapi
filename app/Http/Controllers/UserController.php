@@ -68,6 +68,28 @@ class UserController extends Controller{
             "user" => $user,
         ]);
     }
-
+    //login
+    public function userLogin(Request $request){
+        // $email = User::find($request->email);
+        // $password = User::find($request->password);
+        $email = $request->email;
+        $password = $request->pass;
+        $user = User::where('Email',  $email)->first();//https://www.codegrepper.com/code-examples/php/laravel+if+user+not+exist
+        if ($user === null){
+            return response()->json([
+                "status" => "User not found",
+            ]);
+        }if ($password == $user->Password){
+            return response()->json([
+                "status" => "Success",
+                "user_id" => $user->id,
+            ]);
+        }else{
+            return response()->json([
+                "status" => "Wrong Password",
+            ]);
+        }
+        
+    }
 
 }
