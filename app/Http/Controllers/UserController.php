@@ -55,15 +55,19 @@ class UserController extends Controller{
     }
     //edit profile
      public function editProfile(Request $request){
-         $users=User::where($res->id=$request->id);
-         $res->F_name=$request->fname;
-         $res->L_name=$request->lname;
-         $res->Password=hash('sha256', $request->pass);
-         
-         $res->save();
+         User::where("id",$request->id)->update(['F_name'=>$request->fname],['L_name'=>$request->lname]);
          return response()->json([
              "status" => "success"],200);
      }
-     
+     //get user by id
+     public function getUserById(Request $request){
+        $id = $request->id;
+        $user = User::find($id);
+        return response()->json([
+            "status" => "Success",
+            "user" => $user,
+        ]);
+    }
+
 
 }

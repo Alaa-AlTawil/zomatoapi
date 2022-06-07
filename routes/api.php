@@ -19,3 +19,4 @@ Route::get('/get_restaurants', [UserController::class, 'getAllRestaurants']);
 Route::post('/add_restaurant', [UserController::class, 'addRestaurant']);
 Route::post('/add_user', [UserController::class, 'addUser']);
 Route::post('/edit_prof', [UserController::class, 'editProfile']);
+Route::post('/get_user', [UserController::class, 'getUserById']);
