@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Restaurant;
+use App\Models\Review;
 
 
 class UserController extends Controller{
@@ -61,8 +62,7 @@ class UserController extends Controller{
      }
      //get user by id
      public function getUserById(Request $request){
-        $id = $request->id;
-        $user = User::find($id);
+        $user = User::find($request->id);
         return response()->json([
             "status" => "Success",
             "user" => $user,
@@ -88,8 +88,22 @@ class UserController extends Controller{
             return response()->json([
                 "status" => "Wrong Password",
             ]);
-        }
-        
+        }     
+    }
+    public function getAllReview(){
+
+        $reviews=Review::all();
+        return response()->json([
+            "status" => "success",
+            "restaurants" => $reviews
+        ],200);
+    }
+    public function getReviewById(Request $request){
+        $review=Review::find($request->id);
+        return response()->json([
+            "status" => "success",
+            "review" => $review
+        ],200);
     }
 
 }

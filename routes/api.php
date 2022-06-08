@@ -21,3 +21,5 @@ Route::post('/add_user', [UserController::class, 'addUser']);
 Route::post('/edit_prof', [UserController::class, 'editProfile']);
 Route::post('/get_user', [UserController::class, 'getUserById']);
 Route::post('/login', [UserController::class, 'userLogin']);
+Route::get('/get_allreviews', [UserController::class, 'getAllReview']);
+Route::post('/get_review', [UserController::class, 'getReviewById']);
